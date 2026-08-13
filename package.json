@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.7.3",
+    "@prisma/adapter-pg": "^7.9.1",
+    "@prisma/client": "^7.9.1",
+    "cloudinary": "^2.10.0",
+    "dotenv": "^17.4.2",
     "next": "16.3.0",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -22,6 +27,7 @@
     "daisyui": "^5.7.16",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "prisma": "^7.9.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
