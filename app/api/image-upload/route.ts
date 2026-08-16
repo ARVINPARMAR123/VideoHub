@@ -23,10 +23,7 @@ export async function POST(request: NextRequest) {
     const { userId } = await auth();
 
     if (!userId) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     // Check Cloudinary configuration
@@ -39,7 +36,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(
         { error: "Cloudinary configuration is missing" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -51,7 +48,7 @@ export async function POST(request: NextRequest) {
     if (!(file instanceof File)) {
       return NextResponse.json(
         { error: "No valid image file provided" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -59,7 +56,7 @@ export async function POST(request: NextRequest) {
     if (!file.type.startsWith("image/")) {
       return NextResponse.json(
         { error: "Only image files are allowed" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -94,11 +91,11 @@ export async function POST(request: NextRequest) {
             }
 
             resolve(result as CloudinaryUploadResult);
-          }
+          },
         );
 
         uploadStream.end(fileBuffer);
-      }
+      },
     );
 
     console.log("Cloudinary upload successful:", {
@@ -113,7 +110,7 @@ export async function POST(request: NextRequest) {
         imageUrl: result.secure_url,
         publicId: result.public_id,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error: any) {
     console.error("ERROR UPLOADING IMAGE:", {
@@ -127,7 +124,7 @@ export async function POST(request: NextRequest) {
       {
         error: error?.message || "Failed to upload image",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

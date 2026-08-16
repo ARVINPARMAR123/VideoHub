@@ -57,21 +57,18 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
+    console.log("Starting Cloudinary upload...");
+
     const result = await new Promise<CloudinaryUploadResult>(
       (resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             resource_type: "video",
             folder: "video-uploads",
-            transformation: [
-              {
-                quality: "auto",
-                fetch_format: "mp4",
-              },
-            ],
           },
           (error, result) => {
             if (error) {
+              console.error("Cloudinary upload error:", error);
               reject(error);
             } else {
               resolve(result as CloudinaryUploadResult);
@@ -82,6 +79,10 @@ export async function POST(request: NextRequest) {
         uploadStream.end(buffer);
       },
     );
+
+    console.log("Cloudinary upload successful:", result.public_id);
+    console.log("Cloudinary bytes:", result.bytes);
+    console.log("Cloudinary duration:", result.duration);
 
     const video = await prisma.video.create({
       data: {

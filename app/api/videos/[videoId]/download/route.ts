@@ -37,8 +37,6 @@ export async function GET(
       `https://res.cloudinary.com/${cloudName}` +
       `/video/upload/${video.publicId}.mp4`;
 
-    console.log("Downloading from Cloudinary:", videoUrl);
-
     const response = await fetch(videoUrl);
 
     if (!response.ok) {
@@ -48,7 +46,6 @@ export async function GET(
         response.statusText,
       );
 
-      console.log("Video publicId:", video.publicId);
       if (response.status === 404) {
         return NextResponse.json(
           {

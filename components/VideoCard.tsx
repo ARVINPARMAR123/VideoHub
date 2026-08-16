@@ -10,10 +10,15 @@ dayjs.extend(relativeTime);
 
 interface VideoCardProps {
   video: Video;
-  onDownload: (url: string, title: string) => void;
+  onDownload: (videoId: string, title: string) => void;
+  onDelete: (videoId: string) => void;
 }
 
-const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
+const VideoCard: React.FC<VideoCardProps> = ({
+  video,
+  onDownload,
+  onDelete,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [previewError, setPreviewError] = useState(false);
 
@@ -75,7 +80,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <figure className="aspect-video relative">
+      <figure className="aspect-video relative overflow-hidden">
         {isHovered ? (
           previewError ? (
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
@@ -98,6 +103,17 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
             className="w-full h-full object-cover"
           />
         )}
+        <div className="absolute top-3 right-3 z-10">
+          <button
+            onClick={() => {
+              const url = getFullVideoUrl(video.publicId);
+              window.open(url, "_blank");
+            }}
+            className="btn btn-primary btn-sm"
+          >
+            View Full Video
+          </button>
+        </div>
         <div className="absolute bottom-2 right-2 bg-base-100 bg-opacity-70 px-2 py-1 rounded-lg text-sm flex items-center">
           <Clock size={16} className="mr-1" />
           {formatDuration(video.duration)}
@@ -127,17 +143,29 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex items-center justify-between gap-3 mt-4">
           <div className="text-sm font-semibold">
             Compression:{" "}
             <span className="text-accent">{compressionPercentage}%</span>
           </div>
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={() => onDownload(video.id, video.title)}
-          >
-            <Download size={16} />
-          </button>
+
+          <div className="flex items-center gap-2">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => onDownload(video.id, video.title)}
+              title="Download"
+            >
+              <Download size={16} />
+            </button>
+
+            <button
+              onClick={() => onDelete(video.id)}
+              className="btn btn-error btn-sm"
+            >
+              <Trash2 size={16} />
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
