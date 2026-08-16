@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 ClipVault
 
-## Getting Started
+**ClipVault** is a modern cloud-based video management platform that allows users to upload, store, preview, compress, download, and manage their videos from a single responsive interface.
 
-First, run the development server:
+The project uses **Cloudinary** for cloud-based video storage and media management and **Clerk** for secure user authentication.
+
+## ✨ Features
+
+* 🔐 User authentication with Clerk
+* 📤 Upload videos to Cloudinary
+* ☁️ Cloud-based video storage
+* 🎥 Video preview and playback
+* 🗜️ Video compression support
+* 📥 Download uploaded videos
+* 🗑️ Delete videos
+* 📊 Video library with upload information
+* 🔗 Social video sharing
+* 📱 Responsive user interface
+* 🎨 Modern dashboard design
+* ⚡ Fast and interactive Next.js application
+
+## 🛠️ Technologies Used
+
+* **Next.js** – React framework for the application
+* **React** – User interface development
+* **TypeScript** – Type-safe development
+* **Tailwind CSS** – Styling and responsive design
+* **DaisyUI** – UI components
+* **Clerk** – User authentication
+* **Cloudinary** – Video storage and media management
+* **Lucide React** – Icons
+
+## 📂 Main Sections
+
+### 🏠 Home Page
+
+### 📤 Video Upload
+
+### 🎥 Video Library
+
+### 🔗 Social Share
+
+## 🔐 Authentication
+
+ClipVault uses **Clerk** to provide authentication and user management.
+
+Users can securely:
+
+* Sign in
+* Sign out
+* Access their personal video library
+* Manage their uploaded videos
+
+## ☁️ Cloudinary Integration
+
+Cloudinary is used as the application's cloud media storage solution.
+
+The application uses Cloudinary for:
+
+* Video uploads
+* Video storage
+* Video delivery
+* Video transformations
+* Video compression
+* Media management
+
+## 📱 Responsive Design
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/clipvault.git
+```
+
+### 2. Navigate to the Project
+
+```bash
+cd clipvault
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+
+### 5. Start the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and visit:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```text
+clipvault/
+├── app/
+│   ├── home/
+│   ├── social-share/
+│   ├── video-upload/
+│   ├── api/
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   └── ...
+│
+├── lib/
+│   └── ...
+│
+├── public/
+│   └── ...
+│
+├── .env.local
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 👨‍💻 Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Arvin Parmar**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project was developed as a full-stack web application to explore cloud media management, authentication, video processing, and modern web application development.
